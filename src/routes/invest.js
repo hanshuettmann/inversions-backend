@@ -21,13 +21,13 @@ var investSchema = new mongoose.Schema({
 
 var Invest = mongoose.model('Invest', investSchema);
 
-router.get('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
     var newInvest = new Invest({
-        // name: req.query.name,
-        // amount: req.query.name
+        // name: req.body.name,
+        // amount: req.body.amount
         name: 'Empresa',
         amount: 3423423,
-        created: 12-23-2018,
+        created: 12-23-2018
     });
 
     newInvest.save((err, invest) => {

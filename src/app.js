@@ -17,7 +17,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', indexRouter);
+app.use('/inversions', indexRouter);
 app.use('/invest', investRouter);
+app.use('/investlist', investlistRouter);
 
 export default app;
