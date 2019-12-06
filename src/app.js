@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index';
+import investRouter from './routes/invest';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/inversions', indexRouter);
+app.use('/', indexRouter);
+app.use('/invest', investRouter);
 
 export default app;
