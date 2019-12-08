@@ -5,6 +5,7 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index';
 import investRouter from './routes/invest';
+import amountRouter from './routes/amount';
 
 const app = express();
 
@@ -17,8 +18,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/inversions', indexRouter);
+app.use('/', indexRouter);
 app.use('/invest', investRouter);
-app.use('/investlist', investlistRouter);
+app.use('/amount', amountRouter);
 
 export default app;

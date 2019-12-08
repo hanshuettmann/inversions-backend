@@ -21,13 +21,14 @@ var investSchema = new mongoose.Schema({
 
 var Invest = mongoose.model('Invest', investSchema);
 
-router.post('/', function (req, res, next) {
+
+// POST
+router.post('/getInversion', function (req, res, next) {
     var newInvest = new Invest({
-        // name: req.body.name,
-        // amount: req.body.amount
-        name: 'Empresa',
-        amount: 3423423,
-        created: 12-23-2018
+        name: req.body.name,
+        amount: req.body.amount
+
+        // Crear /invests?name=Arcor&amount=1999
     });
 
     newInvest.save((err, invest) => {
@@ -35,8 +36,19 @@ router.post('/', function (req, res, next) {
             res.send(err)
             return;
         }
-        res.send(invest);
+        res.send(invests);
     })
+});
+
+// GET
+router.get('/inversions', function (req, res, next) {
+    Meme.find((err, inversions) => {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        res.send({result: invests});
+    });
 });
 
   
