@@ -20,6 +20,5 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/invest', investRouter);
-app.use('/amount', amountRouter);
 
 export default app;
