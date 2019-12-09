@@ -35,9 +35,9 @@ router.get('/inversions', function (req, res, next) {
             res.send(err);
             return;
         }
-        res.send({result: invests});
+        res.send({ result: invests });
     });
 });
 
-  
-  export default router;
+
+export default router;
