@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router();
+const Schema = mongoose.Schema
 
 var investSchema = new mongoose.Schema({
     name: {
@@ -16,3 +16,5 @@ var investSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+export default mongoose.model('Inversion', inversionSchema)
