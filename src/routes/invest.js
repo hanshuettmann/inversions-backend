@@ -1,24 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+import Inversion from '../models/Inversion'
+
 import mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/investDB', { useNewUrlParser: true });
 
-var investSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    amount: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    created: { 
-        type: Date,
-        default: Date.now
-    }
-});
 
 var Invest = mongoose.model('Invest', investSchema);
 
