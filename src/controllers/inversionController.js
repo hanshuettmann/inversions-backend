@@ -7,7 +7,7 @@ const nuevaInversion = async (req, res, next) => {
     try {
         // almacenar el registro
         await inversion.save()
-        res.json({ mensaje : 'Se agrego un nueva inversion' })
+        res.json(inversion)
     } catch (error) {
         // si hay un error, console.log y next
         res.send(error)
