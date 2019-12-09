@@ -4,7 +4,7 @@ const router = express.Router()
 import inversionController from '../controllers/inversionController'
     
     // Envia monto aleatorio
-    router.get('/monto',(req,res)=>{
+    router.get('/inversiones/calculoMonto',(req,res)=>{
         // max y min expresado en miles
         const max = 100
         const min = 5
@@ -14,27 +14,27 @@ import inversionController from '../controllers/inversionController'
 
 
     // Agrega nueva inversion via POST
-    router.post('/inversion',
+    router.post('/inversiones/crearInversion',
         inversionController.nuevaInversion
     )
 
     // Obtener todas las inversion
-    router.get('/inversion', 
+    router.get('/inversiones', 
         inversionController.mostrarInversiones
     )
 
     // Muestra una inversion en especifico (ID)
-    router.get('/inversion/:id', 
+    router.get('/inversiones/:id', 
         inversionController.mostrarInversion 
     )
 
     // Actualizar Inversion
-    router.put('/inversion/:id', 
+    router.put('/inversiones/:id', 
         inversionController.actualizarInversion
     )
 
     // Eliminar Inversion
-    router.delete('/inversion/:id', 
+    router.delete('/inversiones/:id', 
         inversionController.eliminarInversion
     )
 

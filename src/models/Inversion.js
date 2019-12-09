@@ -2,13 +2,17 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const inversionSchema = new Schema({
-    nombre: {
+    name: {
         type: String,
         trim : true
     },
-    monto: {
+    amount: {
         type: Number, 
         trim: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
     }
 })
 

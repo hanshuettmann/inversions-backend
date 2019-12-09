@@ -26,7 +26,7 @@ const mostrarInversiones = async (req, res, next) => {
             .limit(cantidad)
             .skip(indice)
 
-        const totalInversion = await Inversion.count()
+        const totalInversion = await Inversion.countDocuments()
 
         res.json({result: inversion, totalPages: totalInversion})
 
