@@ -2,12 +2,14 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import mongoose from 'mongoose';
 
 import indexRouter from './routes/index';
-import investRouter from './routes/invest';
-import amountRouter from './routes/amount';
+
 
 const app = express();
+
+mongoose.connect('mongodb://localhost:27017/investDB', { useNewUrlParser: true });
 
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
@@ -19,6 +21,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
-app.use('/invest', investRouter);
+
 
 export default app;

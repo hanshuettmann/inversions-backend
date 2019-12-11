@@ -1,43 +1,33 @@
 var express = require('express');
 var router = express.Router();
+import Invest from '../models/invesment'
 
-import Inversion from '../models/Inversion'
 
 import mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/investDB', { useNewUrlParser: true });
 
 
-var Invest = mongoose.model('Invest', investSchema);
+var Investment = mongoose.model('Inversion', inversionSchema);
 
 
-// POST
-router.post('/getInversion', function (req, res, next) {
-    var newInvest = new Invest({
-        name: req.body.name,
-        amount: req.body.amount
+// DEVUELVE LAS INVERSIONES
+const showInvestment = (req, res, next) => {
 
-        // Crear /invests?name=Arcor&amount=1999
-    });
+        const inversion = Invest.find({})
 
-    newInvest.save((err, invest) => {
-        if (err) {
-            res.send(err)
-            return;
-        }
-        res.send(invests);
-    })
-});
+        const totalInversion = Invest.countDocuments()
 
-// GET
-router.get('/inversions', function (req, res, next) {
-    Meme.find((err, inversions) => {
-        if (err) {
-            res.send(err);
-            return;
-        }
-        res.send({ result: invests });
-    });
-});
+        res.json({result: inversion, totalPages: totalInversion})
+
+}
+
+//CREA UNA INVERSION
+const newInvest = (req, res, next) => {
+    const inversion = new Inversion(req.body)
+
+        inversion.save()
+        res.json(inversion)
+}
 
 
 export default router;
