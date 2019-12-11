@@ -3,32 +3,14 @@ var router = express.Router();
 import mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/firstExample', { useNewUrlParser: true });
 import moment from 'moment';
-
-var inversionSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  ammount: {
-    type: Number,
-    required: true
-  },
-  created: {
-    type: Date,
-    default: Date.now()
-  }
-});
-
-var Inversion = mongoose.model('Inversion', inversionSchema);
+import Inversion from '../models/inversion';
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   let response = {}
-  console.log(new Date(new Date('2019-12-01').setHours(44, 59, 59)));
   if (req.query.quantity && req.query.page && req.query.startDate && req.query.endDate) {
     let page = parseInt(req.query.page, 10);
     let quantity = parseInt(req.query.quantity, 10);
-    
     Inversion.find({
       created: {
         $gte: new Date(req.query.startDate),
@@ -92,7 +74,7 @@ router.get('/calculomonto', function (req, res, next) {
 router.post('/', function (req, res, next) {
   let newInversion = new Inversion({
     name: req.body.name,
-    ammount: req.body.ammount
+    amount: parseInt(req.body.amount)
   });
   newInversion.save((err, newInversion) => {
     if (err) console.error(err);
