@@ -1,5 +1,4 @@
-var express = require('express');
-const Schema = mongoose.Schema
+import mongoose from 'mongoose'
 
 var investSchema = new mongoose.Schema({
     name: {
@@ -17,4 +16,4 @@ var investSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('Investment', investmentSchema)
+export default mongoose.model('Investment', investSchema)

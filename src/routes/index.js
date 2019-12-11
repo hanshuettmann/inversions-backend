@@ -2,7 +2,10 @@ import express from 'express';
 const router = express.Router();
 import Invest from '../Controller/invest'
 
-mongoose.connect('mongodb://localhost:27017/firstExample', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017', { 
+  dbName: 'investDB', 
+  useNewUrlParser: true
+});
 
 
   // MONTOS RANDOM
@@ -11,12 +14,14 @@ mongoose.connect('mongodb://localhost:27017/firstExample', { useNewUrlParser: tr
       res.send(resultado())
   })
 
-
   // DEVUELVE LAS INVERSIONES
   router.get('/inversiones', Invest.showInvestment);
 
   //CREA UNA INVERSION
   router.post('/inversiones/crearMonto', Invest.newInvest);
+
+  //HOME(?)
+  router.get('/', () => {'Servidor funcionando'})
 
 
 export default router;
