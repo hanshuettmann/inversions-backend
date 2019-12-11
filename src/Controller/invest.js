@@ -1,16 +1,12 @@
-import Invest from '../models/invesment'
-
-
-import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost:27017/investDB', { useNewUrlParser: true });
+import Investment from '../models/invesment';
 
 
 // DEVUELVE LAS INVERSIONES
 const showInvestment = (req, res, next) => {
 
-        const inversion = Invest.find({})
+        const inversion = Investment.find({})
 
-        const totalInversion = Invest.countDocuments()
+        const totalInversion = Investment.countDocuments()
 
         res.json({result: inversion, totalPages: totalInversion})
 
@@ -25,4 +21,7 @@ const newInvest = (req, res, next) => {
 }
 
 
-export default router;
+export default{
+        showInvestment,
+        newInvest
+}

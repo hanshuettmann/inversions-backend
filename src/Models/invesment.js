@@ -16,4 +16,4 @@ var investSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('Investment', investSchema)
+export default mongoose.model('Investment', investSchema);

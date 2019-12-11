@@ -4,12 +4,15 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 
+mongoose.connect('mongodb://localhost:27017', { 
+  dbName: 'investDB', 
+  useNewUrlParser: true
+});
+
 import indexRouter from './routes/index';
 
 
 const app = express();
-
-mongoose.connect('mongodb://localhost:27017/investDB', { useNewUrlParser: true });
 
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
@@ -20,7 +23,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', indexRouter);
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '../public')));
 
+app.use('/', indexRouter);
 
 export default app;
