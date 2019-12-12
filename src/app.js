@@ -6,7 +6,8 @@ import mongoose from 'mongoose';
 
 mongoose.connect('mongodb://localhost:27017', { 
   dbName: 'investDB', 
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true 
 });
 
 import indexRouter from './routes/index';

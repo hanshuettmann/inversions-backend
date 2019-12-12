@@ -2,7 +2,9 @@ import express from 'express';
 const router = express.Router();
 import Invest from '../Controller/invest';
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost:27017/investDB', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/investDB', { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true  });
 
 
   // MONTOS RANDOM
@@ -19,7 +21,7 @@ mongoose.connect('mongodb://localhost:27017/investDB', { useNewUrlParser: true }
 
   //HOME(?)
   router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Servidor conectado!' });
   });
 
 
