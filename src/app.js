@@ -4,13 +4,14 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost:27017', { 
-  dbName: 'investDB', 
-  useNewUrlParser: true,
-  useUnifiedTopology: true 
-});
-
 import indexRouter from './routes/index';
+import InvestRouter from './routes/InvestApp';
+
+mongoose.connect('mongodb://localhost:27017/investDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+})
 
 
 const app = express();
@@ -31,5 +32,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
+app.use('/invest', InvestRouter);
 
 export default app;

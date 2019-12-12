@@ -10,7 +10,7 @@ const showInvestment = (req, res, next) => {
 
         res.json({result: inversion, totalPages: totalInversion})
 
-}
+};
 
 //CREA UNA INVERSION
 const newInvest = (req, res, next) => {
@@ -18,7 +18,7 @@ const newInvest = (req, res, next) => {
 
         inversion.save()
         res.json(inversion)
-}
+};
 
 
 export default{
