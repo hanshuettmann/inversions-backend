@@ -4,21 +4,25 @@ import Investment from '../models/invesment';
 // DEVUELVE LAS INVERSIONES
 const showInvestment = (req, res, next) => {
 
-        const inversion = Investment.find({})
+        const inversion = {
+                result: Investment
+        }
 
-        const totalInversion = Investment.countDocuments()
+         res.send(inversion);
 
-        res.json({result: inversion, totalPages: totalInversion})
+        // const totalInversion = Investment.countDocuments()
+
+        // res.json({result: inversion, totalPages: totalInversion})
 
 };
 
 //CREA UNA INVERSION
 const newInvest = (req, res, next) => {
-    const inversion = new Investment({
+    const newInversion = new Investment({
         //     name: req.body.name,
         //     amount: parseInt(req.body.amount)
-        name: 'Empresa',
-        amount: 2000
+            name: req.query.name,
+            amount: parseInt(req.query.amount)
     });
 
         newInversion.save()
