@@ -2,7 +2,7 @@ import express from 'express';
 var router = express.Router();
 import mongoose from 'mongoose';
 import invest from '../Controller/invest';
-mongoose.connect('mongodb://localhost:27017/investDB', { 
+mongoose.connect('mongodb://localhost/investDB', { 
   useNewUrlParser: true,
   useUnifiedTopology: true});
 
