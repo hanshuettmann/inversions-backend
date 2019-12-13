@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/investDB', {
   router.get('/inversiones', invest.showInvestment);
 
   //CREA UNA INVERSION
-  router.post('/crearmonto', invest.newInvest);
+  router.get('/crearmonto', invest.newInvest);
 
   //HOME(?)
   router.get('/index', function (req, res) {
