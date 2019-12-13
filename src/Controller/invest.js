@@ -8,7 +8,7 @@ const showInvestment = (req, res, next) => {
                 result: Investment
         }
 
-         res.send(inversion);
+        res.send(inversion);
 
         // const totalInversion = Investment.countDocuments()
 
@@ -18,11 +18,11 @@ const showInvestment = (req, res, next) => {
 
 //CREA UNA INVERSION
 const newInvest = (req, res, next) => {
-    const newInversion = new Investment({
-        //     name: req.body.name,
-        //     amount: parseInt(req.body.amount)
-            name: req.query.name,
-            amount: parseInt(req.query.amount)
+    let newInversion = new Investment({
+        //name: req.body.name,
+        //amount: parseInt(req.body.amount)
+        name: req.query.name,
+        amount: parseInt(req.query.amount)
     });
 
         newInversion.save()
