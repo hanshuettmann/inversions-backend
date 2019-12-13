@@ -4,15 +4,14 @@ import Investment from '../models/invesment';
 // DEVUELVE LAS INVERSIONES
 const showInvestment = async (req, res, next) => {
 
-        const inversion = {
-                result: Investment
-        }
+        // const inversion = {
+        //         result: Investment.find({})
+        // }
+
+        const inversion = await Investment.find({})
 
         await res.send(inversion);
 
-        // const totalInversion = Investment.countDocuments()
-
-        // res.json({result: inversion, totalPages: totalInversion})
 
 };
 
