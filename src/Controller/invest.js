@@ -14,10 +14,15 @@ const showInvestment = (req, res, next) => {
 
 //CREA UNA INVERSION
 const newInvest = (req, res, next) => {
-    const inversion = new Inversion(req.body)
+    const inversion = new Investment({
+        //     name: req.body.name,
+        //     amount: parseInt(req.body.amount)
+        name: 'Empresa',
+        amount: 2000
+    });
 
-        inversion.save()
-        res.json(inversion)
+        newInversion.save()
+        res.json(newInversion)
 };
 
 

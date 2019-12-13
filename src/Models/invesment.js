@@ -16,4 +16,6 @@ var investSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('Investment', investSchema);
+var Inversion = mongoose.model('Investment', investSchema);
+
+export default Inversion;
