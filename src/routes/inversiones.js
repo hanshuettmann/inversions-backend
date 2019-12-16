@@ -8,8 +8,8 @@ import Inversion from '../models/inversion';
 /* GET home page. */
 router.get('/', function (req, res, next) {
   let response = {}
-  let page = parseInt(req.query.page, 10);
-  let quantity = parseInt(req.query.quantity, 10);
+  let page = parseInt(req.query.page, 10) || 1;
+  let quantity = parseInt(req.query.quantity, 10) || 10;
   if (req.query.quantity && req.query.page && req.query.startDate && req.query.endDate) {
     Inversion.find({
       created: {
