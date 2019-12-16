@@ -8,9 +8,9 @@ import Inversion from '../models/inversion';
 /* GET home page. */
 router.get('/', function (req, res, next) {
   let response = {}
+  let page = parseInt(req.query.page, 10);
+  let quantity = parseInt(req.query.quantity, 10);
   if (req.query.quantity && req.query.page && req.query.startDate && req.query.endDate) {
-    let page = parseInt(req.query.page, 10);
-    let quantity = parseInt(req.query.quantity, 10);
     Inversion.find({
       created: {
         $gte: new Date(req.query.startDate),
@@ -18,7 +18,12 @@ router.get('/', function (req, res, next) {
       }
     }, null, { skip: quantity * (page - 1), limit: quantity }, (err, inversions) => {
       if (err) console.error(err);
-      Inversion.count((err, count) => {
+      Inversion.count({
+        created: {
+          $gte: new Date(req.query.startDate),
+          $lt: new Date(new Date(req.query.endDate).setHours(44, 59, 59))
+        }
+      }, (err, count) => {
         if (err) console.error(err);
         let totalPages = Math.ceil(count / quantity);
         response = {
@@ -36,9 +41,23 @@ router.get('/', function (req, res, next) {
       created: {
         $gte: moment().subtract(7, 'days')
       }
-    }, null, { skip: 0, limit: 10 }, (err, inversions) => {
+    }, null, { skip: quantity * (page - 1), limit: quantity }, (err, inversions) => {
       if (err) console.error(err);
-      res.send(inversions);
+      Inversion.count({
+        created: {
+          $gte: moment().subtract(7, 'days')
+        }
+      }, (err, count) => {
+        if(err) console.error(err);
+        response = {
+          result: inversions,
+          currentPage: page,
+          totalPages: Math.ceil(count / quantity),
+          total: count,
+          quantity: quantity
+        };
+        res.send(response);
+      })
     }).sort({ created: 'desc' });
 
     /*let { startDate, endDate } = req.query;
@@ -66,7 +85,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/calculomonto', function (req, res, next) {
   let response = {
-    number: Math.floor(Math.random() * 101) * 10000,
+    number: Math.floor(Math.random() * 100 + 10) * 10000,
   }
   res.send(response);
 });
